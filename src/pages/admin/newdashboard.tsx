@@ -18,13 +18,13 @@ import { Navigate } from "react-router-dom";
 const userImg =
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJxA5cTf-5dh5Eusm0puHbvAhOrCRPtckzjA&usqp";
 
-  // const { last6Months: months } = getLastMonths();
+  const { last6Months: months } = getLastMonths() || { last6Months: [] };
 
 const Dashboard = () => {
 
   const {user} = useSelector((state: RootState) => state.userReducer)
 
-  const {isLoading, data, error isError} = useStatsQuery(user?._id!)
+  const {isLoading, data, isError} = useStatsQuery(user?._id!)
 
   const stats = data?.stats!
 
