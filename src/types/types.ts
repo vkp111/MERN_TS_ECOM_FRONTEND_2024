@@ -13,8 +13,8 @@ export type User = {
 // Products
 export type Product = {
     name: string
-    price: string
-    stock: string
+    price: number
+    stock: number
     category: string
     photo: string
     _id:string

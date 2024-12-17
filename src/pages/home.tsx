@@ -11,7 +11,7 @@ import { addToCart } from "../redux/reducer/cartReducer"
 const Home = () => {
 
 
-  const { data, isLoading, isError } = useLatestProductsQuery()
+  const { data, isLoading, isError } = useLatestProductsQuery("")
 
   const dispatch = useDispatch()
 

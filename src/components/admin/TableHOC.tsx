@@ -1,3 +1,5 @@
+import { Row, Cell, ColumnInstance } from "react-table";
+
 import {
   AiOutlineSortAscending,
   AiOutlineSortDescending,
@@ -54,11 +56,13 @@ function TableHOC<T extends Object>(
                     {column.isSorted && (
                       <span>
                         {" "}
-                        {column.isSortedDesc ? (
-                          <AiOutlineSortDescending />
-                        ) : (
-                          <AiOutlineSortAscending />
-                        )}
+
+                        {(column as ColumnInstance<T>).isSortedDesc ? (
+  <AiOutlineSortDescending />
+) : (
+  <AiOutlineSortAscending />
+)}
+
                       </span>
                     )}
                   </th>
@@ -67,17 +71,18 @@ function TableHOC<T extends Object>(
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
-              prepareRow(row);
 
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                  ))}
-                </tr>
-              );
-            })}
+            {page.map((row: Row<T>) => {
+  prepareRow(row);
+  return (
+    <tr {...row.getRowProps()}>
+      {row.cells.map((cell: Cell<T>) => (
+        <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+      ))}
+    </tr>
+  );
+})}
+
           </tbody>
         </table>
 
